@@ -1,0 +1,39 @@
+.game {
+  max-width: 800px;
+  margin: 0 auto;
+
+  img { display: block; }
+}
+
+ul.characterCards {
+  display: grid;
+  // Four columns
+  grid-template-columns: repeat(6, 1fr);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+
+  li {
+    img {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out, rotate 0.5s linear;
+      filter: grayscale(1);
+      border-radius: 5px;
+
+      &:hover {
+        transform: scale(1.1);
+        filter: grayscale(0);
+      }
+
+      &.selected {
+        filter: grayscale(0);
+        rotate: 360deg;
+      }
+    }
+
+    margin: 0.25rem;
+    list-style: none;
+  }
+}
