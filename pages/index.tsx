@@ -98,11 +98,11 @@ function getDisplayableName(type: CharacterType) {
 }
 
 function getCharacterImageUrl(character: Character) {
-    return `/static/werewolf-game/images/${character.id}.jpg`
+    return `/werewolf-game/images/${character.id}.jpg`
 }
 
 function getAudioUrl(filename: string) {
-    return `/static/werewolf-game/audio/${filename}.m4a`;
+    return `/werewolf-game/audio/${filename}.m4a`;
 }
 
 function Page() {
@@ -138,7 +138,7 @@ function Page() {
     // Start music at first click, and loop it
     useEffect(() => {
         if (firstInteractionHappened) {
-            const backgroundMusic = new Audio('/static/werewolf-game/audio/music.mp3');
+            const backgroundMusic = new Audio('/werewolf-game/audio/music.mp3');
             backgroundMusic.play().then(() => {});
             backgroundMusic.loop = true
         }
