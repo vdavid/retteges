@@ -3,6 +3,7 @@ import { PocketConnector } from '../../../modules/tools/PocketConnector.ts'
 import Image from "next/image";
 import styles from './index.module.scss'
 import { useEffect, useState } from "react";
+import classnames from "classnames";
 
 type CharacterType =
     'doppelganger'
@@ -118,7 +119,7 @@ function Page() {
         || stage.type === 'end'
         || (selectedCharacters.some(character => character.type === stage.type)
             && (stage.if !== 'minion' || selectedCharacters.some(c => c.type === 'minion'))
-                && (stage.if !== 'insomniac' || selectedCharacters.some(c => c.type === 'insomniac')))
+            && (stage.if !== 'insomniac' || selectedCharacters.some(c => c.type === 'insomniac')))
 
     const enabledStages = stages.filter(stageFilter)
 
@@ -133,7 +134,7 @@ function Page() {
 
     return !started ?
         <CharacterSelectionPage initialSelection={new Array(characters.length).fill(false)} onStart={onStart}/>
-    : <GamePage selectedCharacters={selectedCharacters} stage={enabledStages[stageIndex]} nextStage={nextStage}/>
+        : <GamePage selectedCharacters={selectedCharacters} stage={enabledStages[stageIndex]} nextStage={nextStage}/>
 }
 
 function CharacterSelectionPage({
@@ -169,10 +170,10 @@ function GamePage({
 
     useEffect(() => {
         async function playAudio() {
-            for (const audio of audioInstances) {
+            for (const [index, audio] of audioInstances.entries()) {
                 await audio.play()
                 await waitToFinish(audio)
-                if (stage.breaks ?? true) {
+                if ((stage.breaks ?? true) && index < audioInstances.length - 1) {
                     await wait(5000)
                 }
             }
@@ -183,9 +184,13 @@ function GamePage({
 
     return <div className={styles.game}>
         <h1>Rettegés</h1>
-        <ul>
-            {selectedCharacters.filter(c => c.type === stage.type).map(c => <CharacterCard key={c.id} character={c} selected={false} toggleSelected={() => {}} />)}
-        </ul>
+        {stage.type === 'start'
+            ? <p>Kezdődik!</p>
+            : (stage.type === 'end' ? <p>Vége...</p> : <ul>
+                {selectedCharacters
+                    .filter(c => c.type === stage.type)
+                    .map(c => <CharacterCard key={c.id} character={c}/>)}
+            </ul>)}
     </div>
 }
 
@@ -204,8 +209,8 @@ function CharacterCard({
                            character,
                            selected,
                            toggleSelected
-                       }: { character: Character, selected: boolean, toggleSelected: () => void }) {
-    return <li>
+                       }: { character: Character, selected?: boolean, toggleSelected?: () => void }) {
+    return <li className={classnames(styles.characterCard, { [styles.interactive]: !!toggleSelected })}>
         <Image src={getCharacterImageUrl(character)}
                alt={getDisplayableName(character.type)}
                width={411}

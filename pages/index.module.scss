@@ -2,7 +2,9 @@
   max-width: 800px;
   margin: 0 auto;
 
-  img { display: block; }
+  img {
+    display: block;
+  }
 }
 
 ul.characterCards {
@@ -13,14 +15,22 @@ ul.characterCards {
   justify-content: center;
   margin: 0;
   padding: 0;
+}
 
-  li {
+li.characterCard {
+  margin: 0.25rem;
+  list-style: none;
+
+  img {
+    width: 100%;
+    height: 100%;
+    filter: grayscale(1);
+    border-radius: 5px;
+  }
+
+  &.interactive {
     img {
-      width: 100%;
-      height: 100%;
       transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out, rotate 0.5s linear;
-      filter: grayscale(1);
-      border-radius: 5px;
 
       &:hover {
         transform: scale(1.1);
@@ -32,8 +42,5 @@ ul.characterCards {
         rotate: 360deg;
       }
     }
-
-    margin: 0.25rem;
-    list-style: none;
   }
 }
