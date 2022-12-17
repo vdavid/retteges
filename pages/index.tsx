@@ -151,8 +151,10 @@ function GameScreen({
     }, [abortController, nextStage])
 
     useEffect(() => {
-        playAudio(audioSnippets, (stage.breaks ?? true) ? breakBetweenAudioFilesMs : 0, abortController.signal).then(() => {
-            moveToNextStage()
+        playAudio(audioSnippets, (stage.breaks ?? true) ? breakBetweenAudioFilesMs : 0, abortController.signal).then(canceled => {
+            if (!canceled) {
+                moveToNextStage()
+            }
         })
 
         return () => {
