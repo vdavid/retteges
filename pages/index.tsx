@@ -15,6 +15,7 @@ function Page() {
     const [stageIndex, setStageIndex] = useState(0)
     const [characterSelection, setCharacterSelection] = useState(characters.map(c => c.id === 'werewolf'))
     const selectedCharacters = characters.filter((_, index) => characterSelection[index])
+    const villagers = useMemo(() => characters.filter(c => c.type === 'villager'), [])
 
     // Load audio snippets in the background
     const snippets = useAllSnippets(useMemo(() => getAllAudioNames(stages), []))
@@ -53,6 +54,7 @@ function Page() {
         setStageIndex(0)
     }
 
+
     const currentStageSnippets = useMemo(
         () => getAudioNamesToPlay(enabledStages[stageIndex], selectedCharacters).map(name => snippets[name]),
         [enabledStages, stageIndex, selectedCharacters, snippets]
@@ -71,6 +73,7 @@ function Page() {
                 stageLengthsMs={enabledStageLengthsMs}
                 stageIndex={stageIndex}
                 nextStage={nextStage}
+                villagers={villagers}
                 breakBetweenAudioFilesMs={breakBetweenAudioFilesMs}/>)}
     </div>
 }
