@@ -60,7 +60,7 @@ function Page() {
         [enabledStages, stageIndex, selectedCharacters, snippets]
     )
 
-    return <div className={styles.entirePage} onClick={() => setFirstInteractionHappened(true)}>
+    return <div className={styles.page} onClick={() => setFirstInteractionHappened(true)}>
         {(!started ?
             <CharacterSelectionScreen
                 initialSelection={characterSelection}
