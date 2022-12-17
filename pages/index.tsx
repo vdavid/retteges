@@ -4,8 +4,8 @@ import styles from '../../modules/werewolf-game/index.module.scss'
 import { useCallback, useMemo, useState } from "react"
 import { getAllAudioNames, getAudioNamesToPlay, getTotalLength, musicUrl, useAllSnippets, useBackgroundMusic } from "../../modules/werewolf-game/audio"
 import { characters, getEnabledStages, stages } from "../../modules/werewolf-game/game"
-import GameScreen from "./GameScreen";
-import CharacterSelectionScreen from "./CharacterSelectionScreen";
+import GameScreen from "../../modules/werewolf-game/GameScreen";
+import CharacterSelectionScreen from "../../modules/werewolf-game/CharacterSelectionScreen";
 
 const breakBetweenAudioFilesMs = 5000
 
@@ -31,7 +31,7 @@ function Page() {
     )
 
     // Start music at first click, and loop it
-    useBackgroundMusic(musicUrl, firstInteractionHappened)
+    useBackgroundMusic(musicUrl, 0.5, firstInteractionHappened)
 
     const enabledStages = useMemo(() => getEnabledStages(stages, selectedCharacters), [selectedCharacters])
     const enabledStageLengthsMs = useMemo(() => allStageLengthsMs.filter(
