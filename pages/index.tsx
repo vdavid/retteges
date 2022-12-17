@@ -15,7 +15,13 @@ function Page() {
     const [stageIndex, setStageIndex] = useState(0)
     const [characterSelection, setCharacterSelection] = useState(characters.map(c => c.id === 'werewolf'))
     const selectedCharacters = characters.filter((_, index) => characterSelection[index])
-    const villagers = useMemo(() => characters.filter(c => c.type === 'villager'), [])
+    const villagers = useMemo(() => {
+        const selectedVillagers = selectedCharacters.filter(c => c.type === 'villager');
+        if (selectedVillagers.length) {
+            return selectedVillagers
+        }
+        return characters.filter(c => c.id === 'villager_5')
+    }, [selectedCharacters])
 
     // Load audio snippets in the background
     const snippets = useAllSnippets(useMemo(() => getAllAudioNames(stages), []))
