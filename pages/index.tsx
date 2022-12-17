@@ -151,7 +151,7 @@ function GameScreen({
     }, [abortController, nextStage])
 
     useEffect(() => {
-        playAudio(audioSnippets, stage.breaks ? breakBetweenAudioFilesMs : 0, abortController.signal).then(() => {
+        playAudio(audioSnippets, (stage.breaks ?? true) ? breakBetweenAudioFilesMs : 0, abortController.signal).then(() => {
             moveToNextStage()
         })
 
@@ -175,7 +175,7 @@ function GameScreen({
             </ul>)}
         </main>
         <nav className={styles.timerNav}>
-            <Timer totalMs={stageLengthsMs[stageIndex]} startDateTime={startDateTime}></Timer>
+            <BottomTimer totalMs={stageLengthsMs[stageIndex]} startDateTime={startDateTime}></BottomTimer>
             <button onClick={moveToNextStage}>Ugrás a kövire</button>
         </nav>
     </div>
@@ -193,7 +193,7 @@ function TopTimer({ enabledStages, stageLengthsMs, startDateTime, stageIndex }: 
     }, [stageIndex])
     useEffect(() => {
         const interval = setInterval(() => {
-            setElapsedMs(new Date().getTime() - startDateTime.getTime())
+            setElapsedMs(Math.max(new Date().getTime() - startDateTime.getTime(), 0))
         }, 100)
         return () => clearInterval(interval)
     }, [startDateTime])
@@ -209,18 +209,15 @@ function TopTimer({ enabledStages, stageLengthsMs, startDateTime, stageIndex }: 
     </header>
 }
 
-function Timer({ totalMs, startDateTime }: { totalMs: number, startDateTime: Date }) {
+function BottomTimer({ totalMs, startDateTime }: { totalMs: number, startDateTime: Date }) {
     const [elapsedMs, setElapsedMs] = useState(0)
     useEffect(() => {
         const interval = setInterval(() => {
-            setElapsedMs(new Date().getTime() - startDateTime.getTime())
+            setElapsedMs(Math.min(new Date().getTime() - startDateTime.getTime(), totalMs))
         }, 100)
         return () => clearInterval(interval)
-    }, [startDateTime])
-    return <div className={styles.timer}>
-        <span>{formatTime(totalMs - elapsedMs)}</span>
-        <div style={{ width: `${78 * elapsedMs / totalMs}%` }}></div>
-    </div>
+    }, [startDateTime, totalMs])
+    return <div className={styles.timer}>{formatTime(totalMs - elapsedMs)}</div>
 }
 
 // ss:ms
