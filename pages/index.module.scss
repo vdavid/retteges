@@ -1,5 +1,4 @@
 .entirePage {
-    background-color: #f5f5f5;
     padding: 0 0 0 0;
     margin: 0 0 0 0;
     width: 100%;
@@ -8,21 +7,44 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-.game {
-  max-width: 800px;
-  margin: 0 auto;
 
   img {
     display: block;
   }
+}
+.characterSelectionScreen {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4rem auto 100px;
 
   > header {
 
   }
 
   > nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 
+.gameScreen {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4rem auto 100px;
+
+  > header {
+
+  }
+
+  > nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
