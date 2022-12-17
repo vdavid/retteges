@@ -13,8 +13,15 @@ import {
     playAudio,
     useAllSnippets,
     useBackgroundMusic
-} from "./audio"
-import { Character, characters, getDisplayableName, getEnabledStages, Stage, stages } from "./game"
+} from "../../modules/werewolf-game/audio"
+import {
+    Character,
+    characters,
+    getDisplayableName,
+    getEnabledStages,
+    Stage,
+    stages
+} from "../../modules/werewolf-game/game"
 
 const breakBetweenAudioFilesMs = 5000
 
@@ -169,8 +176,7 @@ function GameScreen({
         </main>
         <nav className={styles.timerNav}>
             <Timer totalMs={stageLengthsMs[stageIndex]} startDateTime={startDateTime}></Timer>
-            <button onClick={moveToNextStage}>Ugrás a kövire
-            </button>
+            <button onClick={moveToNextStage}>Ugrás a kövire</button>
         </nav>
     </div>
 }
