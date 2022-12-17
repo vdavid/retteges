@@ -1,7 +1,7 @@
 // @ts-ignore
 import { PocketConnector } from '../../../modules/tools/PocketConnector.ts'
 import Image from "next/image"
-import styles from './index.module.scss'
+import styles from '../../modules/werewolf-game/index.module.scss'
 import { useCallback, useEffect, useMemo, useState } from "react"
 import classnames from "classnames"
 import {
