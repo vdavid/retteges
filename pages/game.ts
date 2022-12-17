@@ -7,6 +7,7 @@ export type Character = {
 }
 
 export type StartStage = {
+    index: 0
     type: 'start'
     if: 'player-count'
     few: string
@@ -16,6 +17,7 @@ export type StartStage = {
 }
 
 export type Stage = {
+    index: number
     type: CharacterType | 'start' | 'end'
     audioFiles: string[]
     if?: 'minion' | 'insomniac'
@@ -44,19 +46,24 @@ export const characters: Character[] = [
 ]
 
 export const stages: Stage[] = [
-    { type: 'start', if: 'player-count', few: '0-start-few', many: '0-start-many', all: '0-start-all' },
-    { type: 'doppelganger', audioFiles: ['1-doppelganger'] },
-    { type: 'doppelganger', if: 'minion', audioFiles: ['2-doppelganger-1', '2-doppelganger-2', '2-doppelganger-3'] },
-    { type: 'werewolf', audioFiles: ['3-werewolf-1', '3-werewolf-2'] },
-    { type: 'minion', audioFiles: ['4-minion-1', '4-minion-2'] },
-    { type: 'mason', audioFiles: ['5-mason-1', '5-mason-2'] },
-    { type: 'seer', audioFiles: ['6-seer-1', '6-seer-2'] },
-    { type: 'robber', audioFiles: ['7-robber-1', '7-robber-2'] },
-    { type: 'troublemaker', audioFiles: ['8-troublemaker-1', '8-troublemaker-2'] },
-    { type: 'drunk', audioFiles: ['9-drunk-1', '9-drunk-2'] },
-    { type: 'insomniac', audioFiles: ['10-insomniac-1', '10-insomniac-2'] },
-    { type: 'doppelganger', if: 'insomniac', audioFiles: ['11-doppelganger-1', '11-doppelganger-2'] },
-    { type: 'end', audioFiles: ['12-end-1', '12-end-2'], breaks: false },
+    { index: 0, type: 'start', if: 'player-count', few: '0-start-few', many: '0-start-many', all: '0-start-all' },
+    { index: 1, type: 'doppelganger', audioFiles: ['1-doppelganger'] },
+    {
+        index: 2,
+        type: 'doppelganger',
+        if: 'minion',
+        audioFiles: ['2-doppelganger-1', '2-doppelganger-2', '2-doppelganger-3']
+    },
+    { index: 3, type: 'werewolf', audioFiles: ['3-werewolf-1', '3-werewolf-2'] },
+    { index: 4, type: 'minion', audioFiles: ['4-minion-1', '4-minion-2'] },
+    { index: 5, type: 'mason', audioFiles: ['5-mason-1', '5-mason-2'] },
+    { index: 6, type: 'seer', audioFiles: ['6-seer-1', '6-seer-2'] },
+    { index: 7, type: 'robber', audioFiles: ['7-robber-1', '7-robber-2'] },
+    { index: 8, type: 'troublemaker', audioFiles: ['8-troublemaker-1', '8-troublemaker-2'] },
+    { index: 9, type: 'drunk', audioFiles: ['9-drunk-1', '9-drunk-2'] },
+    { index: 10, type: 'insomniac', audioFiles: ['10-insomniac-1', '10-insomniac-2'] },
+    { index: 11, type: 'doppelganger', if: 'insomniac', audioFiles: ['11-doppelganger-1', '11-doppelganger-2'] },
+    { index: 12, type: 'end', audioFiles: ['12-end-1', '12-end-2'], breaks: false },
 ]
 
 export function getDisplayableName(type: CharacterType) {

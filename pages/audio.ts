@@ -31,7 +31,7 @@ export function getAudioNamesToPlay(stage: Stage, selectedCharacters: Character[
         ? [selectedCharacters.length <= 6 ? (stage as StartStage).few
             : selectedCharacters.length < 18 ? (stage as StartStage).many
                 : (stage as StartStage).all]
-        : stage.audioFiles
+        : (stage.audioFiles || [])
 }
 
 export function getTotalLength(snippets: AudioSnippet[]): number {
