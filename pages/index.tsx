@@ -38,7 +38,7 @@ function Page() {
     )
 
     // Start music at first click, and loop it
-    useBackgroundMusic(musicUrl, 0.5, firstInteractionHappened)
+    useBackgroundMusic(musicUrl, 0.2, firstInteractionHappened)
 
     const enabledStages = useMemo(() => getEnabledStages(stages, selectedCharacters), [selectedCharacters])
     const enabledStageLengthsMs = useMemo(() => allStageLengthsMs.filter(
