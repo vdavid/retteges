@@ -1,4 +1,4 @@
-import Game from "../../modules/werewolf-game/Game";
+import Game from '../../modules/retteges/Game'
 
 function Page() {
     return <Game/>

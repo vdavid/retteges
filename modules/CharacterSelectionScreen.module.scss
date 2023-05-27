@@ -1,0 +1,84 @@
+@import 'common';
+
+.characterSelectionScreen {
+  width: 100vw;
+  max-width: 800px;
+  height: calc(100% - 2rem);
+  margin: 0 auto;
+  padding: 1rem 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 8rem minmax(auto, calc(100% - 8rem - 100px)) 100px;
+
+  > header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      margin: 0;
+      font-size: clamp(0.65rem, 0.1rem + 5vw, 3rem);
+      line-height: 1.3em;
+      text-align: center;
+      color: $accent-color;
+      letter-spacing: 1px;
+    }
+  }
+
+  > nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1em;
+  }
+}
+
+.toggleButton {
+  &.active {
+
+  }
+}
+
+ul.characterCards {
+  display: grid;
+  // Four columns
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, 33%);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+li.characterCard {
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+
+  img {
+    filter: grayscale(1);
+    transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out, rotate 0.5s linear;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+
+    &:hover {
+      transform: scale(1.1);
+      filter: grayscale(0);
+    }
+
+  }
+
+  &.selected img {
+    filter: grayscale(0);
+    rotate: 360deg;
+  }
+}

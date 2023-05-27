@@ -1,0 +1,32 @@
+@import 'common';
+
+.page {
+  padding: 0 0;
+  margin: 0 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Rubik Marker Hatch', cursive;
+  background-color: $background-color;
+  color: $foreground-color;
+
+  button {
+    border: none;
+    padding: 1em 2em;
+    font-family: 'Rubik Marker Hatch', cursive;
+    background-color: $accent-color;
+    color: $foreground-color;
+    transition: 0.5s;
+
+    &:disabled {
+      color: $background-color;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+
+      &:disabled {
+        transform: none;
+      }
+    }
+  }
+}
