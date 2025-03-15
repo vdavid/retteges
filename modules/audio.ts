@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Character, Stage, StartStage } from "./game-logic";
 import { wait } from "./util";
 
-export const musicUrl = '/werewolf-game/audio/music.mp3';
+export const musicUrl = '/retteges/audio/music.mp3'
 export type AudioSnippet = { name: string, audio: HTMLAudioElement, durationMs: number };
 
 export const useBackgroundMusic = (url: string, volume: number, firstInteractionHappened: boolean, paused: boolean): void => {
@@ -104,7 +104,7 @@ function loadSnippet(name: string): Promise<AudioSnippet> {
 }
 
 function getAudioUrl(name: string) {
-    return `/werewolf-game/audio/${name}.m4a`;
+    return `/retteges/audio/${name}.m4a`
 }
 
 // Audio as a promise

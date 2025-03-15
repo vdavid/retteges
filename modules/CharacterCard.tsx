@@ -15,6 +15,6 @@ export default function CharacterCard({ character, className, onClick }:
 }
 
 function getCharacterImageUrl(character: Character): string {
-    return `/werewolf-game/images/${character.id}.jpg`
+    return `/retteges/images/${character.id}.jpg`
 }
 
