@@ -1,0 +1,10 @@
+/node_modules
+/coverage
+/.next
+/.idea
+/.vscode
+/data/article-summaries.json
+.DS_Store
+*.pem
+.env.development.local
+next-env.d.ts 

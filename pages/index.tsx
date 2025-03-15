@@ -1,7 +1,7 @@
-import Game from '../../modules/retteges/Game'
+import Game from '../modules/Game'
 
 function Page() {
-    return <Game/>
+    return <Game />
 }
 
 export default Page
