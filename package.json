@@ -1,6 +1,7 @@
 {
     "name": "retteges",
     "version": "0.1.0",
+    "description": "A family implementation of a social deduction game, similar to \"One Night Ultimate Werewolf\".",
     "private": true,
     "scripts": {
         "dev": "next dev",
